@@ -107,19 +107,21 @@ export default function DiagnosticoLucroClient() {
       <section className="seller-hero seller-hero-diagnostic exec-hero">
         <div className="exec-hero-top">
           <div className="exec-hero-copy">
-            <span className="badge pro">Detector de prejuízo oculto</span>
+            <span className="badge pro">Diagnóstico de lucro</span>
 
             <h1 className="exec-title">
-              Descubra se este produto está em lucro, alerta ou prejuízo
+              Descubra se esse produto está deixando lucro ou prejuízo
             </h1>
 
             <p className="exec-subtitle">
-              Preencha os valores do produto e veja em minutos se a margem está saudável ou se você precisa corrigir preço, custo ou operação.
+              Preencha os números do produto e veja se sua margem está saudável
+              ou se custos como frete, devolução, taxas e anúncios estão reduzindo
+              seu resultado no Mercado Livre.
             </p>
 
             <div className="exec-hero-proof">
               <span className="pill good">Lucro real</span>
-              <span className="pill">Margem limpa</span>
+              <span className="pill">Margem final</span>
               <span className="pill">Preço sugerido</span>
             </div>
           </div>
@@ -154,7 +156,7 @@ export default function DiagnosticoLucroClient() {
               onClick={analisar}
               disabled={loading}
             >
-              {loading ? "Analisando..." : "Analisar lucro real"}
+              {loading ? "Analisando lucro..." : "Analisar lucro"}
             </button>
           </div>
         </div>
@@ -165,9 +167,9 @@ export default function DiagnosticoLucroClient() {
           <section className="diagnostic-score-card card card-premium">
             <div className="card-head">
               <div className="min-w-0">
-                <h2>Leitura executiva do produto</h2>
+                <h2>Resumo do diagnóstico</h2>
                 <p className="subtitle">
-                  Veja rapidamente a saúde do SKU e onde agir primeiro.
+                  Veja rapidamente se esse SKU está saudável ou se precisa de ajuste.
                 </p>
               </div>
 
@@ -178,7 +180,7 @@ export default function DiagnosticoLucroClient() {
 
             <div className="diagnostic-score-grid">
               <div className={`diagnostic-score-main tone-${scoreTone}`}>
-                <div className="diagnostic-score-label">Score do produto</div>
+                <div className="diagnostic-score-label">Saúde do produto</div>
                 <div className="diagnostic-score-value">{data.score}/100</div>
 
                 <div className="diagnostic-score-bar">
@@ -188,22 +190,20 @@ export default function DiagnosticoLucroClient() {
                   />
                 </div>
 
-                <p className="diagnostic-score-text">
-                  {data.conclusao}
-                </p>
+                <p className="diagnostic-score-text">{data.conclusao}</p>
               </div>
 
               <div className="exec-kpi-grid diagnostic-kpis">
                 <div className="exec-kpi-card">
                   <div className="market-kpi-label">Lucro real</div>
                   <div className="exec-kpi-value">{formatMoney(data.lucro)}</div>
-                  <div className="exec-kpi-note">Após perdas operacionais.</div>
+                  <div className="exec-kpi-note">Resultado depois das perdas operacionais.</div>
                 </div>
 
                 <div className="exec-kpi-card">
                   <div className="market-kpi-label">Margem final</div>
                   <div className="exec-kpi-value">{data.margem.toFixed(2)}%</div>
-                  <div className="exec-kpi-note">Margem efetiva do SKU.</div>
+                  <div className="exec-kpi-note">Margem efetiva do produto.</div>
                 </div>
 
                 <div className="exec-kpi-card tone-info">
@@ -211,7 +211,7 @@ export default function DiagnosticoLucroClient() {
                   <div className="exec-kpi-value">
                     {formatMoney(data.recomendacaoPreco)}
                   </div>
-                  <div className="exec-kpi-note">Preço recomendado pela IA.</div>
+                  <div className="exec-kpi-note">Valor sugerido para proteger melhor a margem.</div>
                 </div>
               </div>
             </div>
@@ -221,9 +221,9 @@ export default function DiagnosticoLucroClient() {
             <div className="card card-premium exec-section-card">
               <div className="card-head">
                 <div className="min-w-0">
-                  <h2>Perdas invisíveis</h2>
+                  <h2>Custos que estão reduzindo sua margem</h2>
                   <p className="subtitle">
-                    Custos escondidos que reduzem sua margem sem parecer óbvios.
+                    Veja onde estão as perdas que mais pesam no resultado desse produto.
                   </p>
                 </div>
 
@@ -249,9 +249,9 @@ export default function DiagnosticoLucroClient() {
             <div className="card card-premium exec-section-card">
               <div className="card-head">
                 <div className="min-w-0">
-                  <h2>Ações de correção</h2>
+                  <h2>O que ajustar agora</h2>
                   <p className="subtitle">
-                    Ajustes sugeridos para recuperar margem e melhorar a decisão.
+                    Próximos passos para recuperar margem e melhorar sua decisão.
                   </p>
                 </div>
               </div>
@@ -273,8 +273,8 @@ export default function DiagnosticoLucroClient() {
           </section>
 
           <ProUpgradeButton
-            title="Quer salvar diagnósticos e monitorar margem por SKU?"
-            subtitle="No PRO você acompanha a evolução por produto, compara cenários e usa a IA para corrigir a operação sem planilhas paralelas."
+            title="Quer salvar diagnósticos e acompanhar margem por SKU?"
+            subtitle="No PRO você compara cenários, acompanha a evolução do produto e decide com mais segurança sem depender de planilhas paralelas."
           />
         </>
       ) : null}

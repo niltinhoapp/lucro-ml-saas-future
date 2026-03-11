@@ -14,18 +14,20 @@ export default function RadarOportunidades() {
             <span className="badge pro">Radar de oportunidades</span>
 
             <h1 className="exec-title">
-              Descubra onde ainda existe chance de vender bem
+              Encontre produtos e nichos que merecem sua atenção
             </h1>
 
             <p className="exec-subtitle">
-              Use o radar para enxergar categorias, ideias e sinais de mercado antes de testar um novo produto ou novo nicho.
+              Use o radar para identificar tendências, observar categorias com
+              potencial e descobrir onde ainda pode existir espaço para vender
+              com mais inteligência no Mercado Livre.
             </p>
 
             <div className="exec-hero-proof">
-              <span className="pill good">Mais vendidos</span>
-              <span className="pill">Tendências</span>
-              <span className="pill">Margem</span>
-              <span className="pill">Entrada inteligente</span>
+              <span className="pill good">Tendências</span>
+              <span className="pill">Mais vendidos</span>
+              <span className="pill">Potencial de margem</span>
+              <span className="pill">Ideias para entrada</span>
             </div>
           </div>
 
@@ -33,22 +35,22 @@ export default function RadarOportunidades() {
             <div className="radar-summary-kicker">Leitura rápida</div>
 
             <div className="radar-summary-title">
-              Onde pode existir espaço agora
+              Onde pode existir oportunidade agora
             </div>
 
             <div className="market-summary-list" style={{ marginTop: 14 }}>
               <div className="alert info">
-                Nichos com crescimento e competição moderada tendem a dar mais
-                espaço para teste.
+                Nichos com crescimento e competição moderada podem abrir espaço
+                para novos testes.
               </div>
 
               <div className="alert success">
-                Produtos que aceitam kit têm maior chance de elevar ticket médio.
+                Produtos que permitem kits tendem a ajudar no aumento do ticket médio.
               </div>
 
               <div className="alert info">
-                O ideal não é entrar onde todos estão, mas onde ainda existe
-                diferenciação possível.
+                O melhor caminho nem sempre é entrar onde todos estão, mas onde
+                ainda existe espaço para diferenciação.
               </div>
             </div>
           </div>
@@ -58,9 +60,9 @@ export default function RadarOportunidades() {
       <section className="diagnostic-score-card card card-premium">
         <div className="card-head">
           <div className="min-w-0">
-            <h2>Leitura executiva do radar</h2>
+            <h2>Resumo do radar</h2>
             <p className="subtitle">
-              Uma visão rápida para identificar onde vale olhar primeiro.
+              Uma leitura rápida para entender onde vale olhar primeiro.
             </p>
           </div>
 
@@ -72,7 +74,7 @@ export default function RadarOportunidades() {
             <div className="market-kpi-label">Tendências monitoradas</div>
             <div className="exec-kpi-value">{trends.length}</div>
             <div className="exec-kpi-note">
-              Nichos com potencial para observação.
+              Ideias de nicho para acompanhar mais de perto.
             </div>
           </div>
 
@@ -80,7 +82,7 @@ export default function RadarOportunidades() {
             <div className="market-kpi-label">Categorias em destaque</div>
             <div className="exec-kpi-value">{bestsellers.length}</div>
             <div className="exec-kpi-note">
-              Grupos com maior atenção de mercado.
+              Grupos com maior movimento para observação.
             </div>
           </div>
 
@@ -88,7 +90,7 @@ export default function RadarOportunidades() {
             <div className="market-kpi-label">Foco recomendado</div>
             <div className="exec-kpi-value">Kits</div>
             <div className="exec-kpi-note">
-              Melhor forma de entrar com diferenciação.
+              Boa forma de buscar diferenciação e valor percebido.
             </div>
           </div>
         </div>
@@ -98,13 +100,13 @@ export default function RadarOportunidades() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Tendências</h2>
+              <h2>Tendências para observar</h2>
               <p className="subtitle">
-                Onde o seller pode abrir espaço com mais inteligência.
+                Nichos e sinais que podem indicar oportunidade de entrada.
               </p>
             </div>
 
-            <span className="badge ok">Atualização</span>
+            <span className="badge ok">Monitoramento</span>
           </div>
 
           <div className="market-trend-list">
@@ -113,7 +115,7 @@ export default function RadarOportunidades() {
                 <div className="min-w-0">
                   <div className="market-trend-title">{item.term}</div>
                   <div className="muted">
-                    {item.category} • competição {item.competition}
+                    {item.category} • concorrência {item.competition}
                   </div>
                 </div>
 
@@ -129,9 +131,9 @@ export default function RadarOportunidades() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Mais vendidos</h2>
+              <h2>Categorias mais aquecidas</h2>
               <p className="subtitle">
-                Categorias quentes para observar antes de montar a oferta.
+                Produtos e grupos que podem servir como ponto de partida para análise.
               </p>
             </div>
 
@@ -140,7 +142,10 @@ export default function RadarOportunidades() {
 
           <div className="market-bestseller-grid radar-bestseller-grid">
             {bestsellers.map((group) => (
-              <div key={group.category} className="market-bestseller-card radar-bestseller-card">
+              <div
+                key={group.category}
+                className="market-bestseller-card radar-bestseller-card"
+              >
                 <div className="market-bestseller-title">{group.category}</div>
 
                 <ul>
@@ -166,31 +171,31 @@ export default function RadarOportunidades() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Como usar esse radar</h2>
+              <h2>Como transformar o radar em ação</h2>
               <p className="subtitle">
-                O radar fica mais forte quando vira ação prática.
+                O radar fica mais útil quando vira análise prática.
               </p>
             </div>
           </div>
 
           <div className="market-summary-list">
             <div className="alert info">
-              Priorize categorias com crescimento e competição administrável.
+              Priorize nichos com crescimento e concorrência administrável.
             </div>
 
             <div className="alert success">
-              Procure produtos que permitam kit ou bundle para fugir da guerra de preço.
+              Procure produtos que permitam kits para fugir da guerra de preço.
             </div>
 
             <div className="alert info">
-              Valide com simulador e diagnóstico antes de comprar estoque maior.
+              Valide a oportunidade com simulador e diagnóstico antes de comprar estoque.
             </div>
           </div>
         </div>
 
         <ProUpgradeButton
           title="Assine o PRO para cruzar radar com kits e lucro real"
-          subtitle="Veja oportunidade, monte bundle e valide a margem da operação no mesmo fluxo."
+          subtitle="Descubra oportunidades, monte combinações e valide margem no mesmo fluxo de trabalho."
         />
       </section>
     </div>

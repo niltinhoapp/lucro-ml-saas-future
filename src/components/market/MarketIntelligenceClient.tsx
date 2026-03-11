@@ -28,18 +28,20 @@ export default function MarketIntelligenceClient() {
             <span className="badge pro">Inteligência de mercado</span>
 
             <h1 className="exec-title">
-              Veja se ainda existe espaço para entrar nesse produto
+              Veja se esse produto ainda tem espaço para entrada
             </h1>
 
             <p className="exec-subtitle">
-              Digite um produto e receba uma leitura rápida de preço, concorrência e potencial antes de investir em estoque ou tráfego.
+              Digite um produto e receba uma leitura rápida de preço, concorrência,
+              saturação e potencial antes de decidir se vale comprar, testar ou ajustar
+              sua estratégia no Mercado Livre.
             </p>
 
             <div className="exec-hero-proof">
               <span className="pill good">Preço médio</span>
               <span className="pill">Concorrência</span>
               <span className="pill">Saturação</span>
-              <span className="pill">Tendência</span>
+              <span className="pill">Preço sugerido</span>
             </div>
           </div>
 
@@ -67,7 +69,8 @@ export default function MarketIntelligenceClient() {
             </button>
 
             <div className="alert info">
-              Veja a oportunidade primeiro e só depois decida se vale comprar, anunciar ou ajustar o preço.
+              Primeiro entenda o cenário. Depois decida se vale entrar, testar
+              ou ajustar preço e posicionamento.
             </div>
           </div>
         </div>
@@ -76,9 +79,10 @@ export default function MarketIntelligenceClient() {
       <section className="diagnostic-score-card card card-premium">
         <div className="card-head">
           <div className="min-w-0">
-            <h2>Resumo rápido do nicho</h2>
+            <h2>Resumo do mercado</h2>
             <p className="subtitle">
-              Entenda se vale entrar agora, se é melhor se diferenciar ou se é hora de evitar esse mercado.
+              Veja rapidamente se esse nicho parece atrativo, disputado ou arriscado
+              para entrada.
             </p>
           </div>
 
@@ -87,7 +91,7 @@ export default function MarketIntelligenceClient() {
 
         <div className="diagnostic-score-grid">
           <div className="diagnostic-score-main tone-good">
-            <div className="diagnostic-score-label">Score de oportunidade</div>
+            <div className="diagnostic-score-label">Pontuação de oportunidade</div>
             <div className="diagnostic-score-value">
               {analysis.opportunityScore}/100
             </div>
@@ -105,9 +109,9 @@ export default function MarketIntelligenceClient() {
             </div>
 
             <p className="diagnostic-score-text">
-              A leitura considera concorrência ativa, faixa de preço, saturação
-              e potencial de margem para ajudar o seller a tomar decisão com
-              mais segurança.
+              Essa leitura considera concorrência ativa, faixa de preço,
+              saturação e potencial de margem para ajudar você a tomar
+              uma decisão com mais clareza.
             </p>
           </div>
 
@@ -153,9 +157,9 @@ export default function MarketIntelligenceClient() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Resumo estratégico</h2>
+              <h2>Leitura para decisão</h2>
               <p className="subtitle">
-                Leitura executiva para decidir se vale entrar no nicho.
+                Use esse resumo para decidir se vale entrar, testar ou evitar esse nicho.
               </p>
             </div>
 
@@ -176,15 +180,14 @@ export default function MarketIntelligenceClient() {
 
           <div className="market-price-band">
             <div className="ui-subcard">
-              <strong>Faixa de mercado</strong>
+              <strong>Faixa de preço no mercado</strong>
               <div style={{ marginTop: 8 }}>
-                R$ {analysis.minPrice.toFixed(2)} até R${" "}
-                {analysis.maxPrice.toFixed(2)}
+                R$ {analysis.minPrice.toFixed(2)} até R$ {analysis.maxPrice.toFixed(2)}
               </div>
             </div>
 
             <div className="ui-subcard">
-              <strong>Preço sugerido</strong>
+              <strong>Preço sugerido para entrada</strong>
               <div style={{ marginTop: 8 }}>
                 R$ {analysis.priceSuggestion.toFixed(2)}
               </div>
@@ -195,9 +198,9 @@ export default function MarketIntelligenceClient() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Concorrentes</h2>
+              <h2>Concorrência observada</h2>
               <p className="subtitle">
-                Preço, reputação e força percebida no mercado.
+                Veja preço, reputação, volume e logística dos players que já estão no mercado.
               </p>
             </div>
 
@@ -236,35 +239,34 @@ export default function MarketIntelligenceClient() {
         <div className="card card-premium exec-section-card">
           <div className="card-head">
             <div className="min-w-0">
-              <h2>Leitura prática para agir</h2>
+              <h2>Como agir com essa leitura</h2>
               <p className="subtitle">
-                Use isso para decidir o próximo passo sem depender só de
-                feeling.
+                Transforme essa análise em uma decisão prática.
               </p>
             </div>
           </div>
 
           <div className="market-summary-list">
             <div className="alert success">
-              Entre com preço de teste próximo de R${" "}
-              {analysis.priceSuggestion.toFixed(2)} para validar aceitação.
+              Teste o produto com preço próximo de R$ {analysis.priceSuggestion.toFixed(2)}
+              para validar aceitação sem comprometer demais a margem.
             </div>
 
             <div className="alert info">
-              Se a saturação estiver alta, a diferenciação precisa estar no kit,
-              oferta ou promessa percebida.
+              Se a saturação estiver alta, sua diferenciação precisa aparecer no kit,
+              na oferta ou no posicionamento percebido.
             </div>
 
             <div className="alert info">
-              Nichos com margem alvo saudável permitem errar menos no início e
-              proteger melhor o caixa.
+              Nichos com margem alvo saudável costumam dar mais segurança para testar
+              sem pressionar tanto o caixa.
             </div>
           </div>
         </div>
 
         <ProUpgradeButton
-          title="Salve análises e cruze com margem real"
-          subtitle="No PRO você combina leitura de mercado com DRE, kits e simulador de estoque para decidir melhor."
+          title="Salve análises e cruze mercado com lucro real"
+          subtitle="No PRO você combina leitura de mercado com DRE, kits e simulador para decidir melhor."
         />
       </section>
     </div>

@@ -45,8 +45,8 @@ function formatLabel(key: keyof FormState) {
   const labels: Record<keyof FormState, string> = {
     produto: "Produto",
     precoVenda: "Preço de venda",
-    custoUnitario: "Custo unitário",
-    freteUnitario: "Frete unitário",
+    custoUnitario: "Custo no fornecedor",
+    freteUnitario: "Frete por unidade",
     taxaPercent: "Taxa do marketplace (%)",
     quantidade: "Quantidade do lote",
     giroMensal: "Giro mensal estimado",
@@ -103,16 +103,18 @@ export default function SimuladorEstoqueClient() {
             <span className="badge pro">Simulador de compra</span>
 
             <h1 className="exec-title">
-              Descubra se o próximo lote vale a pena antes de comprar
+              Veja se esse lote faz sentido antes de investir
             </h1>
 
             <p className="exec-subtitle">
-              Simule o lote, veja o lucro estimado, o tempo de giro e o retorno antes de travar dinheiro em estoque.
+              Preencha os dados do produto e descubra quanto dinheiro ficará
+              imobilizado, qual lucro pode voltar para o caixa e em quanto tempo
+              esse lote tende a girar.
             </p>
 
             <div className="exec-hero-proof">
-              <span className="pill good">ROI do lote</span>
-              <span className="pill">Capital imobilizado</span>
+              <span className="pill good">Lucro estimado</span>
+              <span className="pill">Retorno sobre o lote</span>
               <span className="pill">Tempo de giro</span>
             </div>
           </div>
@@ -146,7 +148,7 @@ export default function SimuladorEstoqueClient() {
               onClick={simular}
               disabled={loading}
             >
-              {loading ? "Simulando..." : "Simular lote"}
+              {loading ? "Simulando compra..." : "Simular compra"}
             </button>
           </div>
         </div>
@@ -157,9 +159,9 @@ export default function SimuladorEstoqueClient() {
           <section className="diagnostic-score-card card card-premium">
             <div className="card-head">
               <div className="min-w-0">
-                <h2>Leitura executiva do lote</h2>
+                <h2>Resumo da simulação</h2>
                 <p className="subtitle">
-                  Entenda se o lote faz sentido para o caixa e para a operação.
+                  Veja rapidamente se esse lote pode ajudar sua operação ou comprometer seu caixa.
                 </p>
               </div>
 
@@ -170,7 +172,7 @@ export default function SimuladorEstoqueClient() {
 
             <div className="diagnostic-score-grid">
               <div className={`diagnostic-score-main tone-${roiTone}`}>
-                <div className="diagnostic-score-label">Retorno sobre o estoque</div>
+                <div className="diagnostic-score-label">Retorno sobre o lote</div>
 
                 <div className="diagnostic-score-value">
                   {data.retornoSobreEstoque.toFixed(2)}%
@@ -180,10 +182,7 @@ export default function SimuladorEstoqueClient() {
                   <div
                     className={`diagnostic-score-bar-fill tone-${roiTone}`}
                     style={{
-                      width: `${Math.max(
-                        0,
-                        Math.min(100, data.retornoSobreEstoque)
-                      )}%`,
+                      width: `${Math.max(0, Math.min(100, data.retornoSobreEstoque))}%`,
                     }}
                   />
                 </div>
@@ -193,49 +192,41 @@ export default function SimuladorEstoqueClient() {
 
               <div className="exec-kpi-grid diagnostic-kpis">
                 <div className="exec-kpi-card">
-                  <div className="market-kpi-label">Investimento</div>
-                  <div className="exec-kpi-value">
-                    {formatMoney(data.investimento)}
-                  </div>
-                  <div className="exec-kpi-note">Valor imobilizado no lote.</div>
+                  <div className="market-kpi-label">Investimento no lote</div>
+                  <div className="exec-kpi-value">{formatMoney(data.investimento)}</div>
+                  <div className="exec-kpi-note">Valor que ficará imobilizado na compra.</div>
                 </div>
 
                 <div className="exec-kpi-card tone-good">
-                  <div className="market-kpi-label">Lucro do lote</div>
-                  <div className="exec-kpi-value">
-                    {formatMoney(data.lucroLote)}
-                  </div>
-                  <div className="exec-kpi-note">Lucro estimado da operação.</div>
+                  <div className="market-kpi-label">Lucro estimado do lote</div>
+                  <div className="exec-kpi-value">{formatMoney(data.lucroLote)}</div>
+                  <div className="exec-kpi-note">Lucro projetado com a venda do lote.</div>
                 </div>
 
                 <div className="exec-kpi-card tone-info">
-                  <div className="market-kpi-label">Faturamento</div>
-                  <div className="exec-kpi-value">
-                    {formatMoney(data.faturamento)}
-                  </div>
-                  <div className="exec-kpi-note">Receita estimada do lote.</div>
+                  <div className="market-kpi-label">Faturamento estimado</div>
+                  <div className="exec-kpi-value">{formatMoney(data.faturamento)}</div>
+                  <div className="exec-kpi-note">Receita prevista com a venda total do lote.</div>
                 </div>
 
                 <div className="exec-kpi-card">
-                  <div className="market-kpi-label">Margem</div>
+                  <div className="market-kpi-label">Margem estimada</div>
                   <div className="exec-kpi-value">{data.margem.toFixed(2)}%</div>
-                  <div className="exec-kpi-note">Margem total estimada.</div>
+                  <div className="exec-kpi-note">Margem projetada para a operação.</div>
                 </div>
 
                 <div className="exec-kpi-card tone-info">
-                  <div className="market-kpi-label">Meses para girar</div>
-                  <div className="exec-kpi-value">
-                    {data.mesesParaGirar.toFixed(1)}
-                  </div>
-                  <div className="exec-kpi-note">Tempo estimado de giro do lote.</div>
+                  <div className="market-kpi-label">Tempo de giro</div>
+                  <div className="exec-kpi-value">{data.mesesParaGirar.toFixed(1)}</div>
+                  <div className="exec-kpi-note">Tempo estimado para vender o lote.</div>
                 </div>
 
                 <div className={`exec-kpi-card tone-${roiTone}`}>
-                  <div className="market-kpi-label">ROI estoque</div>
+                  <div className="market-kpi-label">Retorno sobre o estoque</div>
                   <div className="exec-kpi-value">
                     {data.retornoSobreEstoque.toFixed(2)}%
                   </div>
-                  <div className="exec-kpi-note">Retorno esperado sobre o capital.</div>
+                  <div className="exec-kpi-note">Retorno esperado sobre o capital investido.</div>
                 </div>
               </div>
             </div>
@@ -245,9 +236,9 @@ export default function SimuladorEstoqueClient() {
             <div className="card card-premium exec-section-card">
               <div className="card-head">
                 <div className="min-w-0">
-                  <h2>Parecer operacional</h2>
+                  <h2>Leitura da oportunidade</h2>
                   <p className="subtitle">
-                    Leitura para decidir se vale entrar com esse lote agora.
+                    Entenda se vale a pena considerar esse lote agora.
                   </p>
                 </div>
               </div>
@@ -260,9 +251,9 @@ export default function SimuladorEstoqueClient() {
             <div className="card card-premium exec-section-card">
               <div className="card-head">
                 <div className="min-w-0">
-                  <h2>Ações recomendadas</h2>
+                  <h2>Próximos passos sugeridos</h2>
                   <p className="subtitle">
-                    Próximos passos para proteger o caixa e melhorar o lote.
+                    Ações para proteger o caixa e melhorar a decisão de compra.
                   </p>
                 </div>
               </div>

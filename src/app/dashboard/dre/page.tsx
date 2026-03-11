@@ -25,11 +25,11 @@ export default async function Page({
     return (
       <PlanGate
         requiredPlan="pro"
-        title="DRE e leitura financeira"
-        description="O DRE é liberado no PRO, porque ele faz parte da rotina operacional do seller para leitura de lucro, risco e histórico."
+        title="Lucro real e DRE das vendas"
+        description="No PRO, você libera a leitura financeira completa das suas vendas para entender quanto realmente sobra no caixa depois de taxas, frete, devoluções e custos operacionais."
         bullets={[
-          "Resume receita, custo, taxas e logística.",
-          "Mostra o que fazer depois da análise.",
+          "Veja receita, custos, taxas e logística em uma visão clara.",
+          "Descubra onde sua margem está sendo perdida e o que ajustar.",
         ]}
       >
         <div />

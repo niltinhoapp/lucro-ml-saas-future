@@ -5,11 +5,11 @@ export default function SimuladorPage() {
   return (
     <PlanGate
       requiredPlan="pro"
-      title="Simulador de compra"
-      description="Antes de fechar lote, o seller vê quanto capital vai travar, qual retorno esperar e em quanto tempo esse estoque gira."
+      title="Simulador de lucro para compra de estoque"
+      description="Antes de investir em um lote, veja quanto dinheiro será imobilizado, qual lucro pode voltar para o caixa e em quanto tempo esse estoque tende a girar."
       bullets={[
-        "Evita compra ruim.",
-        "Mostra ROI estimado e tempo de giro.",
+        "Evite comprar produtos com margem ruim.",
+        "Veja lucro estimado, retorno e tempo de giro antes de investir.",
       ]}
     >
       <SimuladorEstoqueClient />

@@ -59,7 +59,7 @@ function riskClass(value: string | null) {
 }
 
 function itemDisplayName(item: CatalogDbItem) {
-  return item.normalized_name?.trim() || item.raw_name?.trim() || "Item sem nome";
+  return item.normalized_name?.trim() || item.raw_name?.trim() || "Produto sem nome";
 }
 
 function normalizeGroupName(name: string) {
@@ -267,6 +267,7 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
   }, [grouped, categoryFilter, riskFilter, onlyPromising, onlyTrusted, query]);
 
   const promising = analysis.filter((entry) => entry.risk_level === "low").length;
+
   const avgScore =
     analysis.length > 0
       ? analysis.reduce((acc, entry) => acc + Number(entry.opportunity_score ?? 0), 0) /
@@ -287,17 +288,17 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
       <section className="seller-hero seller-hero-overview exec-hero">
         <div className="exec-hero-top">
           <div className="exec-hero-copy">
-            <span className="badge pro">Detalhe do catálogo</span>
+            <span className="badge pro">Análise do catálogo</span>
             <h1 className="exec-title">{catalog.title}</h1>
             <p className="exec-subtitle">
-              Aqui você revisa o catálogo de forma agrupada, encontra variações do mesmo
-              produto e separa o que parece confiável do que ainda pede revisão.
+              Veja os produtos agrupados, identifique oportunidades com mais potencial
+              e separe rapidamente o que parece confiável do que ainda precisa de verificação.
             </p>
           </div>
 
           <div className="catalog-detail-actions">
             <Link href="/dashboard/catalogos" className="btn btn-secondary">
-              Voltar
+              Voltar para catálogos
             </Link>
             <Link href="/dashboard/simulador" className="btn btn-primary">
               Simular compra
@@ -308,15 +309,15 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
 
       <section className="catalog-stats-grid">
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Status</div>
+          <div className="market-kpi-label">Status da análise</div>
           <div className="market-kpi-value">{catalog.status}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Itens extraídos</div>
+          <div className="market-kpi-label">Produtos encontrados</div>
           <div className="market-kpi-value">{catalog.items_count}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Grupos</div>
+          <div className="market-kpi-label">Produtos agrupados</div>
           <div className="market-kpi-value">{grouped.length}</div>
         </div>
         <div className="card catalog-stat-card">
@@ -324,19 +325,19 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
           <div className="market-kpi-value">{categoryCount}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Promissores</div>
+          <div className="market-kpi-label">Boas oportunidades</div>
           <div className="market-kpi-value">{promising}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Em revisão</div>
+          <div className="market-kpi-label">Produtos em revisão</div>
           <div className="market-kpi-value">{reviewRows.length}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Score médio</div>
+          <div className="market-kpi-label">Pontuação média</div>
           <div className="market-kpi-value">{avgScore.toFixed(0)}</div>
         </div>
         <div className="card catalog-stat-card">
-          <div className="market-kpi-label">Margem média</div>
+          <div className="market-kpi-label">Margem média estimada</div>
           <div className="market-kpi-value">{avgMargin.toFixed(1)}%</div>
         </div>
       </section>
@@ -344,9 +345,9 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
       <section className="card card-premium">
         <div className="card-head">
           <div>
-            <h2>Resumo do arquivo</h2>
+            <h2>Resumo da análise</h2>
             <p className="subtitle">
-              Tipo: <strong>{catalog.source_type}</strong> • criado em{" "}
+              Origem: <strong>{catalog.source_type}</strong> • enviado em{" "}
               <strong>{new Date(catalog.created_at).toLocaleString("pt-BR")}</strong>
             </p>
           </div>
@@ -358,7 +359,7 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
             Última atualização: {new Date(catalog.updated_at).toLocaleString("pt-BR")}
           </span>
           <span className="pill">
-            Parse:{" "}
+            Leitura do arquivo:{" "}
             {catalog.parsed_at
               ? new Date(catalog.parsed_at).toLocaleString("pt-BR")
               : "—"}
@@ -367,13 +368,13 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
 
         {bestTrusted ? (
           <div className="alert success" style={{ marginTop: 16 }}>
-            Melhor oportunidade filtrada: <strong>{bestTrusted.groupName}</strong> com score{" "}
-            <strong>{bestTrusted.bestScore}</strong> e margem média de{" "}
+            Melhor oportunidade com os filtros atuais: <strong>{bestTrusted.groupName}</strong>,
+            com pontuação <strong>{bestTrusted.bestScore}</strong> e margem média estimada de{" "}
             <strong>{bestTrusted.avgMargin.toFixed(1)}%</strong>.
           </div>
         ) : (
           <div className="alert warn" style={{ marginTop: 16 }}>
-            Com o filtro atual, ainda não há grupo suficientemente confiável para destaque.
+            Com os filtros atuais, ainda não há um produto com confiança suficiente para destaque.
           </div>
         )}
       </section>
@@ -381,9 +382,9 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
       <section className="card card-premium">
         <div className="card-head">
           <div>
-            <h2>Filtros da análise</h2>
+            <h2>Filtrar oportunidades</h2>
             <p className="subtitle">
-              Refine por categoria, risco e confiança para enxergar só o que interessa.
+              Encontre mais rápido os produtos que fazem sentido para sua análise.
             </p>
           </div>
         </div>
@@ -434,7 +435,7 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
               checked={onlyPromising}
               onChange={(e) => setOnlyPromising(e.target.checked)}
             />
-            <span>Só promissores</span>
+            <span>Mostrar só boas oportunidades</span>
           </label>
 
           <label className="catalog-check">
@@ -443,7 +444,7 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
               checked={onlyTrusted}
               onChange={(e) => setOnlyTrusted(e.target.checked)}
             />
-            <span>Só confiáveis</span>
+            <span>Mostrar só produtos confiáveis</span>
           </label>
         </div>
       </section>
@@ -451,16 +452,18 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
       <section className="card card-premium">
         <div className="card-head">
           <div>
-            <h2>Oportunidades agrupadas</h2>
+            <h2>Produtos com maior potencial</h2>
             <p className="subtitle">
-              Produtos iguais ou muito parecidos ficam agrupados para reduzir ruído e facilitar
-              a decisão.
+              Produtos iguais ou parecidos ficam agrupados para facilitar a leitura e
+              ajudar na decisão de compra.
             </p>
           </div>
         </div>
 
         {!filteredGroups.length ? (
-          <div className="alert warn">Nenhum grupo encontrado com os filtros atuais.</div>
+          <div className="alert warn">
+            Nenhum produto encontrado com os filtros atuais.
+          </div>
         ) : (
           <div className="catalog-table-wrap">
             <table className="catalog-table">
@@ -469,12 +472,12 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
                   <th>Produto</th>
                   <th>Categoria</th>
                   <th>Variações</th>
-                  <th>Custo</th>
-                  <th>Preço médio ML</th>
+                  <th>Custo no fornecedor</th>
+                  <th>Preço médio no Mercado Livre</th>
                   <th>Margem média</th>
-                  <th>Melhor score</th>
+                  <th>Pontuação de oportunidade</th>
                   <th>Risco</th>
-                  <th>ML</th>
+                  <th>Mercado Livre</th>
                 </tr>
               </thead>
               <tbody>
@@ -506,17 +509,18 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
                       <span className={`badge ${riskClass(group.bestRisk)}`}>
                         {riskLabel(group.bestRisk)}
                       </span>
-        <td className="catalog-ml-cell">
-  <a
-    href={buildMlSearchUrl(group.groupName)}
-    target="_blank"
-    rel="noreferrer"
-    className="catalog-ml-button"
-  >
-    Analisar no ML
-  </a>
-</td>       </td>
-</tr>                                    
+                    </td>
+                    <td className="catalog-ml-cell">
+                      <a
+                        href={buildMlSearchUrl(group.groupName)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="catalog-ml-button"
+                      >
+                        Ver concorrência no Mercado Livre
+                      </a>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -527,24 +531,27 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
       <section className="card card-premium">
         <div className="card-head">
           <div>
-            <h2>Itens em revisão</h2>
+            <h2>Produtos que precisam de verificação</h2>
             <p className="subtitle">
-              Itens com confiança menor, nome ambíguo ou estrutura que ainda pede revisão.
+              Aqui ficam os produtos com menor confiança de leitura ou informações que
+              ainda merecem validação antes de decidir a compra.
             </p>
           </div>
         </div>
 
         {!reviewRows.length ? (
-          <div className="alert success">Nenhum item ficou marcado para revisão.</div>
+          <div className="alert success">
+            Nenhum produto ficou marcado para verificação.
+          </div>
         ) : (
           <div className="catalog-table-wrap">
             <table className="catalog-table">
               <thead>
                 <tr>
-                  <th>Produto detectado</th>
+                  <th>Produto identificado</th>
                   <th>SKU</th>
-                  <th>Custo</th>
-                  <th>Confiança</th>
+                  <th>Custo no fornecedor</th>
+                  <th>Confiança da leitura</th>
                   <th>Fonte</th>
                   <th>Observação</th>
                 </tr>
@@ -572,7 +579,7 @@ export default function CatalogDetailClient({ catalog, items, analysis }: Props)
                       <td className="catalog-row-summary">
                         {analysis?.ai_summary ??
                           item.notes ??
-                          "Item marcado para revisão por baixa confiança ou nome ambíguo."}
+                          "Produto marcado para verificação por baixa confiança ou nome ambíguo."}
                       </td>
                     </tr>
                   );

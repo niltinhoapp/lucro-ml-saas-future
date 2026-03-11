@@ -5,11 +5,11 @@ export default function FluxoCaixaHome() {
   return (
     <PlanGate
       requiredPlan="pro"
-      title="Fluxo de caixa"
-      description="O fluxo de caixa fica liberado no PRO para que o seller pare de depender de planilha manual e ganhe leitura rápida do período."
+      title="Fluxo de caixa da operação"
+      description="No PRO, você acompanha entradas e saídas com mais clareza, reduz a dependência de planilhas manuais e protege melhor o capital de giro da sua operação."
       bullets={[
-        "Importa extrato e organiza entradas e saídas.",
-        "Ajuda a proteger capital de giro.",
+        "Importe extratos e organize entradas e saídas com mais rapidez.",
+        "Tenha mais controle sobre o caixa e evite decisões no escuro.",
       ]}
     >
       <FluxoCaixaPageClient />

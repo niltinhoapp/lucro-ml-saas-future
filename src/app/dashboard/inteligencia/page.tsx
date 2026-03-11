@@ -5,11 +5,11 @@ export default function InteligenciaPage() {
   return (
     <PlanGate
       requiredPlan="pro"
-      title="Inteligência de mercado"
-      description="Esta área ajuda o seller a avaliar direção de compra, risco e oportunidade antes de tomar decisão."
+      title="Inteligência de mercado para sellers"
+      description="Analise cenários de mercado, entenda demanda e concorrência e tenha mais clareza antes de decidir quais produtos vale a pena comprar ou testar."
       bullets={[
-        "Lê cenários com mais contexto.",
-        "Apoia decisões de compra e posicionamento.",
+        "Avalie risco, demanda e potencial de venda.",
+        "Tome decisões de compra com mais contexto de mercado.",
       ]}
     >
       <MarketIntelligenceClient />

@@ -33,18 +33,20 @@ export default async function LoginPage(props: Props) {
   if (user) redirect(next);
 
   return (
-    <div className="auth-shell">
-      <div className="auth-wrap">
-        <section className="auth-panel">
+    <div className="auth-shell auth-shell-centered">
+      <div className="auth-single-wrap">
+        <section className="auth-top-copy">
           <span className="auth-eyebrow">Lucro ML</span>
-          <h1 className="auth-title">Entre e continue de onde parou</h1>
-          <p className="auth-subtitle">
-            Acesse seu painel, veja margem, estoque, caixa e os próximos passos
-            da operação sem perder tempo.
+          <h1 className="auth-title auth-title-centered">
+            Entre e continue sua operação
+          </h1>
+          <p className="auth-subtitle auth-subtitle-centered">
+            Acesse seu painel para ver margem, estoque, caixa e os próximos passos
+            da sua operação com mais clareza.
           </p>
         </section>
 
-        <section className="auth-card">
+        <section className="auth-card auth-card-centered">
           <div className="auth-card-head">
             <h2 className="auth-card-title">Entrar</h2>
             <p className="auth-card-subtitle">
@@ -100,7 +102,10 @@ export default async function LoginPage(props: Props) {
           </form>
 
           <div className="auth-footer">
-            Ainda não tem conta? <Link href={`/auth/register?next=${encodeURIComponent(next)}`}>Criar conta</Link>
+            Ainda não tem conta?{" "}
+            <Link href={`/auth/register?next=${encodeURIComponent(next)}`}>
+              Criar conta
+            </Link>
           </div>
         </section>
       </div>

@@ -5,11 +5,11 @@ export default function RadarPage() {
   return (
     <PlanGate
       requiredPlan="pro"
-      title="Radar de oportunidades"
-      description="O radar destaca movimentos e ideias para o seller focar energia onde existe chance real de lucro."
+      title="Radar de produtos com potencial de venda"
+      description="O radar ajuda você a encontrar oportunidades que merecem atenção, identificar tendências úteis e direcionar sua análise para produtos com maior chance de resultado no Mercado Livre."
       bullets={[
-        "Aponta tendências úteis para o negócio.",
-        "Ajuda a priorizar novas análises.",
+        "Descubra oportunidades para analisar com mais rapidez.",
+        "Priorize produtos e nichos com maior potencial comercial.",
       ]}
     >
       <RadarOportunidades />

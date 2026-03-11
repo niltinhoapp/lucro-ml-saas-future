@@ -53,15 +53,24 @@ export default function KitsGeneratorClient() {
       <section className="seller-hero seller-hero-kits exec-hero">
         <div className="exec-hero-top">
           <div className="exec-hero-copy">
-            <span className="badge pro">IA de Kits</span>
+            <span className="badge pro">Gerador de kits</span>
 
             <h1 className="exec-title">
-              Monte kits prontos para vender melhor sem depender só de desconto
+              Monte ofertas mais fortes sem depender só de desconto
             </h1>
 
             <p className="exec-subtitle">
-              Escolha um produto base e receba ideias de kits para aumentar ticket, melhorar margem e testar ofertas mais fortes.
+              Escolha um produto base e receba ideias de kits para aumentar
+              ticket médio, melhorar margem e testar ofertas com mais valor
+              percebido no Mercado Livre.
             </p>
+
+            <div className="exec-hero-proof">
+              <span className="pill good">Mais valor percebido</span>
+              <span className="pill">Ticket médio</span>
+              <span className="pill">Margem estimada</span>
+              <span className="pill">Ideias para teste</span>
+            </div>
           </div>
 
           <div className="market-search-box seller-form-card exec-form-card">
@@ -111,6 +120,37 @@ export default function KitsGeneratorClient() {
 
       {data ? (
         <>
+          <section className="diagnostic-score-card card card-premium">
+            <div className="card-head">
+              <div className="min-w-0">
+                <h2>Resumo dos kits sugeridos</h2>
+                <p className="subtitle">
+                  Veja formatos de oferta para sair da guerra de preço e vender
+                  com mais valor percebido.
+                </p>
+              </div>
+
+              <span className="badge ok">{data.categoria}</span>
+            </div>
+
+            <div className="exec-kpi-grid diagnostic-kpis">
+              <div className="exec-kpi-card tone-good">
+                <div className="market-kpi-label">Produto base</div>
+                <div className="exec-kpi-value">{data.produto}</div>
+              </div>
+
+              <div className="exec-kpi-card tone-info">
+                <div className="market-kpi-label">Categoria</div>
+                <div className="exec-kpi-value">{data.categoria}</div>
+              </div>
+
+              <div className="exec-kpi-card">
+                <div className="market-kpi-label">Kits sugeridos</div>
+                <div className="exec-kpi-value">{data.kits.length}</div>
+              </div>
+            </div>
+          </section>
+
           <section className="exec-section-grid seller-grid-tight">
             {data.kits.map((kit) => (
               <article
@@ -143,10 +183,9 @@ export default function KitsGeneratorClient() {
             <div className="card card-premium exec-section-card">
               <div className="card-head">
                 <div className="min-w-0">
-                  <h2>Estratégia sugerida</h2>
+                  <h2>Como usar esses kits na prática</h2>
                   <p className="subtitle">
-                    Ações recomendadas para transformar os kits em oferta mais
-                    forte no Mercado Livre.
+                    Próximos passos para transformar os kits em oferta mais forte.
                   </p>
                 </div>
               </div>
@@ -162,7 +201,7 @@ export default function KitsGeneratorClient() {
 
             <ProUpgradeButton
               title="Desbloqueie histórico de kits e comparação por margem"
-              subtitle="Use o PRO para salvar kits campeões, comparar versões e transformar ideia boa em rotina de venda."
+              subtitle="Use o PRO para salvar kits campeões, comparar versões e transformar boas ideias em rotina de venda."
             />
           </section>
         </>

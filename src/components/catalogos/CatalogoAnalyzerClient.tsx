@@ -178,10 +178,10 @@ export default function CatalogoAnalyzerClient({
     if (!result) return null;
 
     return [
-      { label: "Itens lidos", value: String(summary.parsedRows) },
-      { label: "Promissores", value: String(summary.promisingCount) },
-      { label: "Em revisão", value: String(summary.reviewCount) },
-      { label: "Margem média", value: `${summary.avgMargin.toFixed(1)}%` },
+      { label: "Produtos encontrados", value: String(summary.parsedRows) },
+      { label: "Boas oportunidades", value: String(summary.promisingCount) },
+      { label: "Produtos em revisão", value: String(summary.reviewCount) },
+      { label: "Margem média estimada", value: `${summary.avgMargin.toFixed(1)}%` },
     ];
   }, [result, summary]);
 
@@ -239,35 +239,35 @@ export default function CatalogoAnalyzerClient({
     <div className="catalog-shell">
       <section className="space-y-6 catalog-hero">
         <div className="space-y-3">
-          <span className="badge-premium">PLUS • Inteligência de Catálogo</span>
+          <span className="badge-premium">PLUS • Catálogos de fornecedor</span>
           <h2 className="catalog-hero-title">
-            Análise de catálogo do fornecedor
+            Envie o catálogo e descubra o que merece sua atenção
           </h2>
           <p className="catalog-hero-subtitle">
-            Envie o catálogo e transforme PDF em uma leitura prática para decidir
-            compra, margem e prioridade.
+            Transforme PDF em uma análise prática para encontrar produtos com
+            potencial, identificar riscos e decidir compra com mais clareza.
           </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
           <div className="catalog-card">
-            <p className="catalog-card-title">PDF → tabela</p>
+            <p className="catalog-card-title">Enviar catálogo</p>
             <p className="catalog-card-desc">
-              Estrutura os itens para seguir o fluxo do projeto.
+              Faça upload do PDF do fornecedor para começar a análise.
             </p>
           </div>
 
           <div className="catalog-card">
-            <p className="catalog-card-title">Leitura por item</p>
+            <p className="catalog-card-title">Ver produtos organizados</p>
             <p className="catalog-card-desc">
-              Calcula margem, score e risco com base no padrão atual.
+              O sistema identifica produtos, margem estimada, risco e oportunidade.
             </p>
           </div>
 
           <div className="catalog-card">
-            <p className="catalog-card-title">Compatível com fluxo atual</p>
+            <p className="catalog-card-title">Decidir com mais rapidez</p>
             <p className="catalog-card-desc">
-              Mantém visual, lógica e integração com o restante do sistema.
+              Priorize o que merece análise e evite perder horas no PDF.
             </p>
           </div>
         </div>
@@ -277,8 +277,7 @@ export default function CatalogoAnalyzerClient({
             <div className="space-y-1">
               <p className="catalog-card-title">Enviar catálogo</p>
               <p className="catalog-card-desc">
-                PDFs baseados em texto funcionam melhor nesta fase. TXT e CSV
-                também podem ser enviados.
+                PDFs em texto funcionam melhor. TXT e CSV também podem ser enviados.
               </p>
             </div>
 
@@ -336,9 +335,9 @@ export default function CatalogoAnalyzerClient({
           <section className="space-y-5 catalog-card">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="space-y-2">
-                <h3 className="catalog-card-title">Leitura do catálogo</h3>
+                <h3 className="catalog-card-title">Resumo da análise</h3>
                 <p className="catalog-card-desc">
-                  Arquivo: {result.fileName}
+                  Arquivo analisado: {result.fileName}
                 </p>
               </div>
 
@@ -347,20 +346,20 @@ export default function CatalogoAnalyzerClient({
                   summary.extractionQuality
                 )}`}
               >
-                Qualidade da extração: {summary.extractionQuality}
+                Qualidade da leitura: {summary.extractionQuality}
               </span>
             </div>
 
             {summary.extractionQuality === "baixa" && (
               <div className="px-4 py-3 text-sm border rounded-xl border-amber-500/30 bg-amber-500/10 text-amber-100">
-                Extração fraca. O catálogo precisa de revisão manual. PDFs com
-                imagem ou layout muito fechado podem exigir OCR ou ajuste posterior.
+                A leitura do arquivo ficou fraca. Esse catálogo pode precisar de
+                verificação manual, principalmente quando o PDF é imagem ou tem layout muito fechado.
               </div>
             )}
 
             {summary.highlights.length > 0 && (
               <div className="space-y-3">
-                <p className="catalog-card-title">Destaques</p>
+                <p className="catalog-card-title">Principais destaques</p>
                 <div className="grid gap-3 md:grid-cols-2">
                   {summary.highlights.map((highlight, index) => (
                     <div
@@ -377,17 +376,17 @@ export default function CatalogoAnalyzerClient({
 
           <section className="space-y-4 catalog-card">
             <div className="space-y-2">
-              <h3 className="catalog-card-title">Tabela priorizada</h3>
+              <h3 className="catalog-card-title">Produtos com maior potencial</h3>
               <p className="catalog-card-desc">
-                Itens já organizados no mesmo padrão do projeto, com margem,
-                risco e score de oportunidade.
+                Veja os produtos organizados com custo, preço médio no Mercado Livre,
+                margem estimada, risco e pontuação de oportunidade.
               </p>
             </div>
 
             {rows.length === 0 ? (
               <div className="catalog-empty">
-                Nenhum item estruturado foi encontrado neste catálogo. Tente
-                outro arquivo ou revise o PDF.
+                Nenhum produto estruturado foi encontrado neste catálogo. Tente
+                outro arquivo ou revise o PDF enviado.
               </div>
             ) : (
               <div className="catalog-table-wrap">
@@ -395,12 +394,12 @@ export default function CatalogoAnalyzerClient({
                   <thead>
                     <tr>
                       <th>Produto</th>
-                      <th>Custo</th>
-                      <th>Preço médio ML</th>
-                      <th>Margem</th>
+                      <th>Custo no fornecedor</th>
+                      <th>Preço médio no Mercado Livre</th>
+                      <th>Margem estimada</th>
                       <th>Demanda</th>
                       <th>Concorrência</th>
-                      <th>Score</th>
+                      <th>Pontuação</th>
                       <th>Risco</th>
                     </tr>
                   </thead>
@@ -428,9 +427,7 @@ export default function CatalogoAnalyzerClient({
                           <strong>{toNumber(row.opportunityScore)}</strong>
                         </td>
                         <td>
-                          <span
-                            className={riskClassName(row.riskLevel)}
-                          >
+                          <span className={riskClassName(row.riskLevel)}>
                             {riskLabel(row.riskLevel)}
                           </span>
                         </td>
@@ -444,10 +441,9 @@ export default function CatalogoAnalyzerClient({
 
           <section className="space-y-4 catalog-card">
             <div className="space-y-2">
-              <h3 className="catalog-card-title">Prévia do texto extraído</h3>
+              <h3 className="catalog-card-title">Prévia do conteúdo lido</h3>
               <p className="catalog-card-desc">
-                Útil para revisar PDFs mais bagunçados sem sair do padrão do
-                projeto.
+                Use esta área para revisar rapidamente o texto extraído do arquivo.
               </p>
             </div>
 
@@ -461,17 +457,16 @@ export default function CatalogoAnalyzerClient({
 
       <section className="space-y-4 catalog-card">
         <div className="space-y-2">
-          <h3 className="catalog-card-title">Histórico de catálogos</h3>
+          <h3 className="catalog-card-title">Histórico de análises</h3>
           <p className="catalog-card-desc">
-            Cada leitura fica conectada ao banco e pronta para ser revisitada sem
-            precisar reenviar o arquivo.
+            Revise catálogos já enviados sem precisar reenviar o arquivo.
           </p>
         </div>
 
         {savedCatalogs.length === 0 ? (
           <div className="catalog-empty">
-            Nenhum catálogo salvo ainda. Envie o primeiro PDF para montar
-            histórico e reaproveitar suas análises dentro do PLUS.
+            Nenhum catálogo salvo ainda. Envie seu primeiro arquivo para começar
+            a montar seu histórico de análise.
           </div>
         ) : (
           <div className="space-y-3">
@@ -491,7 +486,7 @@ export default function CatalogoAnalyzerClient({
 
                   <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
                     <span>Status: {catalog.status || "desconhecido"}</span>
-                    <span>Itens: {catalog.items_count ?? 0}</span>
+                    <span>Produtos: {catalog.items_count ?? 0}</span>
                     <span>{formatDate(catalog.created_at)}</span>
                   </div>
                 </div>

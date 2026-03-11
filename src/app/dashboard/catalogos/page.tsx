@@ -44,10 +44,10 @@ export default async function CatalogosPage() {
     <PlanGate
       requiredPlan="plus"
       title="Análise de catálogos de fornecedor"
-      description="Este é o carro-chefe do Lucro ML. O módulo lê PDF do fornecedor, organiza os itens e ajuda a priorizar o que realmente merece compra."
+      description="Envie catálogos de fornecedores e descubra quais produtos têm maior potencial de revenda no Mercado Livre."
       bullets={[
-        "Transforma PDF em tabela pronta para análise.",
-        "Ajuda a encontrar itens promissores com mais rapidez.",
+        "Transforme PDF em produtos organizados para análise.",
+        "Ganhe velocidade para identificar oportunidades de compra.",
       ]}
     >
       <div className="market-page page-wrap">
@@ -55,9 +55,13 @@ export default async function CatalogosPage() {
           <div className="exec-hero-top">
             <div className="exec-hero-copy">
               <span className="badge pro">Catálogos • PLUS</span>
-              <h1 className="exec-title">Veja quais produtos do fornecedor realmente valem a pena</h1>
+              <h1 className="exec-title">
+                Transforme catálogos de fornecedores em oportunidades de lucro
+              </h1>
               <p className="exec-subtitle">
-                Envie o catálogo, organize os itens e veja quais produtos merecem atenção antes de colocar dinheiro em estoque.
+                Envie o catálogo do fornecedor e veja quais produtos merecem sua
+                atenção antes de investir em estoque. O objetivo é encontrar com
+                mais rapidez o que pode vender bem e deixar margem no Mercado Livre.
               </p>
             </div>
           </div>
@@ -69,15 +73,15 @@ export default async function CatalogosPage() {
             <div className="market-kpi-value">{(ent?.plan ?? "free").toUpperCase()}</div>
           </div>
           <div className="card catalog-stat-card">
-            <div className="market-kpi-label">Catálogos salvos</div>
+            <div className="market-kpi-label">Catálogos enviados</div>
             <div className="market-kpi-value">{catalogs.length}</div>
           </div>
           <div className="card catalog-stat-card">
-            <div className="market-kpi-label">Analisados</div>
+            <div className="market-kpi-label">Catálogos analisados</div>
             <div className="market-kpi-value">{analyzedCount}</div>
           </div>
           <div className="card catalog-stat-card">
-            <div className="market-kpi-label">Itens mapeados</div>
+            <div className="market-kpi-label">Produtos identificados</div>
             <div className="market-kpi-value">{totalItems}</div>
           </div>
         </section>
@@ -87,30 +91,39 @@ export default async function CatalogosPage() {
         <section className="card card-premium">
           <div className="card-head">
             <div>
-              <h2>Histórico de catálogos</h2>
+              <h2>Histórico de análises</h2>
               <p className="subtitle">
-                Cada leitura fica conectada ao banco e pronta para ser revisitada sem precisar reenviar o arquivo.
+                Revise catálogos já enviados, acompanhe leituras anteriores e
+                retome análises sem precisar reenviar o arquivo.
               </p>
             </div>
           </div>
 
           {!catalogs.length ? (
             <div className="alert info">
-              Nenhum catálogo salvo ainda. Envie o primeiro PDF para montar histórico e reaproveitar suas análises dentro do PLUS.
+              Nenhum catálogo enviado ainda. Envie seu primeiro PDF para começar
+              a identificar produtos com potencial de lucro no Mercado Livre.
             </div>
           ) : (
             <div className="catalog-history-grid">
               {catalogs.map((catalog) => (
-                <Link key={catalog.id} href={`/dashboard/catalogos/${catalog.id}`} className="card catalog-history-card">
+                <Link
+                  key={catalog.id}
+                  href={`/dashboard/catalogos/${catalog.id}`}
+                  className="card catalog-history-card"
+                >
                   <div className="catalog-history-top">
                     <span className="badge pro">{catalog.source_type.toUpperCase()}</span>
                     <span className="small">{formatDate(catalog.created_at)}</span>
                   </div>
+
                   <h3>{catalog.title}</h3>
+
                   <p className="subtitle">{catalog.file_name ?? "Arquivo sem nome"}</p>
+
                   <div className="catalog-history-meta">
                     <span className="pill">Status: {catalog.status}</span>
-                    <span className="pill">Itens: {catalog.items_count ?? 0}</span>
+                    <span className="pill">Produtos: {catalog.items_count ?? 0}</span>
                   </div>
                 </Link>
               ))}

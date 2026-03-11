@@ -33,18 +33,20 @@ export default async function RegisterPage(props: Props) {
   if (user) redirect(next);
 
   return (
-    <div className="auth-shell">
-      <div className="auth-wrap">
-        <section className="auth-panel">
-          <span className="auth-eyebrow">Teste rápido</span>
-          <h1 className="auth-title">Crie sua conta e comece com segurança</h1>
-          <p className="auth-subtitle">
-            Em poucos minutos você acessa o sistema e começa a ver onde está o
-            lucro, o alerta e o próximo passo da operação.
+    <div className="auth-shell auth-shell-centered">
+      <div className="auth-single-wrap">
+        <section className="auth-top-copy">
+          <span className="auth-eyebrow">Lucro ML</span>
+          <h1 className="auth-title auth-title-centered">
+            Crie sua conta e comece sua operação com mais clareza
+          </h1>
+          <p className="auth-subtitle auth-subtitle-centered">
+            Em poucos minutos você acessa o sistema e começa a analisar margem,
+            estoque, caixa e oportunidades com mais segurança.
           </p>
         </section>
 
-        <section className="auth-card">
+        <section className="auth-card auth-card-centered">
           <div className="auth-card-head">
             <h2 className="auth-card-title">Criar conta</h2>
             <p className="auth-card-subtitle">
@@ -105,7 +107,10 @@ export default async function RegisterPage(props: Props) {
           </form>
 
           <div className="auth-footer">
-            Já tem conta? <Link href={`/auth/login?next=${encodeURIComponent(next)}`}>Entrar</Link>
+            Já tem conta?{" "}
+            <Link href={`/auth/login?next=${encodeURIComponent(next)}`}>
+              Entrar
+            </Link>
           </div>
         </section>
       </div>
